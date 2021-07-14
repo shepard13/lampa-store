@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const Header = () => {
+import './header.css';
+const Header = ({ numItems, total }) => {
   return (
-    <div className='header'>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
-        </li>
-        <li>
-          <Link to='/cart'>Cart</Link>
-        </li>
-      </ul>
-    </div>
+    <header className='shop-header row'>
+      <Link to='/'>
+        <span className='logo text-dark'>LAMPA-store</span>
+      </Link>
+      <Link to='/cart'>
+        <i className='cart-icon bi bi-cart' />
+        {numItems} items (${total})
+      </Link>
+    </header>
   );
 };
 

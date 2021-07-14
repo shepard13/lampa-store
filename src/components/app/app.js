@@ -6,8 +6,8 @@ import Header from '../header/header';
 
 const App = () => {
   return (
-    <div className='app'>
-      <Header />
+    <main role='main' className='container'>
+      <Header numItems={5} total={250} />
       <Switch>
         <Route exact path='/'>
           <HomePage />
@@ -16,7 +16,7 @@ const App = () => {
           <CartPage />
         </Route>
       </Switch>
-    </div>
+    </main>
   );
 };
 

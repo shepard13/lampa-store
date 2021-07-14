@@ -1,12 +1,11 @@
 import React from 'react';
-import LampList from '../lamp-list';
-
+import { LampListContainer } from '../../containers';
 const HomePage = () => {
   return (
-    <div>
+    <section>
       <h1>Home</h1>
-      <LampList lamps={[1, 2, 3]} />
-    </div>
+      <LampListContainer />
+    </section>
   );
 };
 export default HomePage;
