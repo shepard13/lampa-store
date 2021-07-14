@@ -1,6 +1,6 @@
 import React from 'react';
 import './lamp-list-item.css';
-const LampListItem = ({ lamp }) => {
+const LampListItem = ({ lamp, onAddedToCart }) => {
   const { title, manufacturer, price, lampImg } = lamp;
   return (
     <div className='lamp-list-item'>
@@ -11,9 +11,9 @@ const LampListItem = ({ lamp }) => {
         </a>
         <p className='card-text'>{manufacturer}</p>
         <p className='card-text'>{price}</p>
-        <a href='/' className='btn btn-primary'>
+        <button onClick={onAddedToCart} className='btn btn-primary'>
           Add to cart
-        </a>
+        </button>
       </div>
     </div>
   );

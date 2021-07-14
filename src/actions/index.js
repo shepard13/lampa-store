@@ -1,3 +1,10 @@
+export const lampAddedToCart = (lampId) => {
+  return {
+    type: 'LAMP_ADDED_TO_CART',
+    payload: lampId,
+  };
+};
+
 const lampsRequested = () => {
   return {
     type: 'FETCH_LAMPS_REQUEST',
