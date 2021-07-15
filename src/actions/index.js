@@ -4,6 +4,25 @@ export const lampAddedToCart = (lampId) => {
     payload: lampId,
   };
 };
+export const lampIncreasedInCart = (lampId) => {
+  return {
+    type: 'LAMP_INCREASED_AMOUNT_IN_CART',
+    payload: lampId,
+  };
+};
+export const lampDecreasedInCart = (lampId) => {
+  return {
+    type: 'LAMP_DECREASED_AMOUNT_IN_CART',
+    payload: lampId,
+  };
+};
+
+export const lampDeletedFromCart = (lampId) => {
+  return {
+    type: 'LAMP_DELETED_FROM_CART',
+    payload: lampId,
+  };
+};
 
 const lampsRequested = () => {
   return {
@@ -25,7 +44,7 @@ const lampsError = (error) => {
   };
 };
 
-const fetchLamps = (lampastoreService, dispatch) => () => {
+const fetchLamps = (lampastoreService) => () => (dispatch) => {
   dispatch(lampsRequested());
   lampastoreService
     .getLamps()
@@ -34,5 +53,4 @@ const fetchLamps = (lampastoreService, dispatch) => () => {
     })
     .catch((err) => dispatch(lampsError(err)));
 };
-
 export { fetchLamps };

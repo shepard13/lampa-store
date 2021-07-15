@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { withLampastoreService } from '../components/hoc';
 import { fetchLamps, lampAddedToCart } from '../actions';
 import LampList from '../components/lamp-list/lamp-list';
+import { bindActionCreators } from 'redux';
 
 class LampListContainer extends Component {
   componentDidMount() {
@@ -22,15 +23,18 @@ class LampListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ lamps, loading, error }) => {
+const mapStateToProps = ({ lampList: { lamps, loading, error } }) => {
   return { lamps, loading, error };
 };
 
 const mapDispatchToProps = (dispatch, { lampastoreService }) => {
-  return {
-    fetchLamps: fetchLamps(lampastoreService, dispatch),
-    onAddedToCart: (id) => dispatch(lampAddedToCart(id)),
-  };
+  return bindActionCreators(
+    {
+      fetchLamps: fetchLamps(lampastoreService),
+      onAddedToCart: lampAddedToCart,
+    },
+    dispatch
+  );
 };
 
 export default withLampastoreService()(
