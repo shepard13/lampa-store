@@ -1,7 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
-const Header = ({ numItems, total }) => {
+import { withLampastoreService } from '../hoc';
+import { connect } from 'react-redux';
+
+const Header = ({ cartTotal, cartItemsAmount }) => {
+  let itemsInCartIndicatore = '';
+  if (cartTotal > 0) {
+    itemsInCartIndicatore = (
+      <span>
+        {cartItemsAmount}-Items (${cartTotal})
+      </span>
+    );
+  }
+
   return (
     <header className='shop-header row'>
       <Link to='/'>
@@ -9,10 +21,14 @@ const Header = ({ numItems, total }) => {
       </Link>
       <Link to='/cart'>
         <i className='cart-icon bi bi-cart' />
-        {numItems} items (${total})
+        {itemsInCartIndicatore}
       </Link>
     </header>
   );
 };
 
-export default Header;
+const mapStateToProps = ({ cartList: { cartTotal, cartItemsAmount } }) => {
+  return { cartTotal, cartItemsAmount };
+};
+
+export default withLampastoreService()(connect(mapStateToProps)(Header));

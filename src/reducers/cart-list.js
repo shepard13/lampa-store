@@ -1,3 +1,12 @@
+import {
+  setItemsAmount,
+  setItemsPrice,
+  setItemsCart,
+  getItemsAmount,
+  getItemsPrice,
+  getItemsCart,
+} from '../local-storage';
+
 const updateCartItems = (cartItems, item, itemIndex) => {
   if (item.count === 0) {
     return [
@@ -26,6 +35,26 @@ const updateCartItem = (lamp, item = {}, quantity) => {
   };
 };
 
+const updateCartTotalPrice = (itemsInCartArr) => {
+  //set date in state
+  const itemTotalArr = itemsInCartArr.map((item) => item.total);
+  const total = itemTotalArr.reduce((fItem, sItem) => fItem + sItem, 0);
+  // setItemsPrice(total)  Set date in localStorage
+  setItemsPrice(total);
+  return total;
+};
+
+const updateCartTotalAmount = (itemsInCartArr) => {
+  //set date in state
+  const itemTotalArr = itemsInCartArr.map((item) => item.count);
+  const total = itemTotalArr.reduce((fItem, sItem) => fItem + sItem, 0);
+  //setItemsCart(itemTotalArr) Set the arr of objects(products) in the localStorage
+  setItemsCart(itemsInCartArr);
+  // setItemsAmount(total)  Set value(number) of total amount of products in cart in the localStorage
+  setItemsAmount(total);
+  return total;
+};
+
 const updateOrder = (state, lampId, quantity) => {
   const {
     lampList: { lamps },
@@ -35,14 +64,25 @@ const updateOrder = (state, lampId, quantity) => {
   const itemIndex = cartItems.findIndex(({ id }) => id === lampId);
   const item = cartItems[itemIndex];
   const newItem = updateCartItem(lamp, item, quantity);
+  const itemsInCartArr = updateCartItems(cartItems, newItem, itemIndex);
   return {
-    ...state,
-    cartItems: updateCartItems(cartItems, newItem, itemIndex),
+    cartItemsAmount: updateCartTotalAmount(itemsInCartArr),
+    cartTotal: updateCartTotalPrice(itemsInCartArr),
+    cartItems: itemsInCartArr,
   };
 };
+
 const updateCartList = (state, action) => {
   if (state === undefined) {
+    if (getItemsPrice() > 0) {
+      return {
+        cartItemsAmount: getItemsAmount(),
+        cartItems: getItemsCart(),
+        cartTotal: getItemsPrice(),
+      };
+    }
     return {
+      cartItemsAmount: 0,
       cartItems: [],
       cartTotal: 0,
     };
