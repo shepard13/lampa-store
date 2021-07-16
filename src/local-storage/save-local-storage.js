@@ -13,4 +13,8 @@ const getItemsCart = () => {
   return JSON.parse(localStorage.getItem('itemsList'));
 };
 
-export { getItemsAmount, getItemsPrice, getItemsCart };
+const getLampsList = () => {
+  return JSON.parse(localStorage.getItem('lampsList'));
+};
+
+export { getItemsAmount, getItemsPrice, getItemsCart, getLampsList };

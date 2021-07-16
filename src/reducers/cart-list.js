@@ -5,6 +5,7 @@ import {
   getItemsAmount,
   getItemsPrice,
   getItemsCart,
+  getLampsList,
 } from '../local-storage';
 
 const updateCartItems = (cartItems, item, itemIndex) => {
@@ -57,9 +58,9 @@ const updateCartTotalAmount = (itemsInCartArr) => {
 
 const updateOrder = (state, lampId, quantity) => {
   const {
-    lampList: { lamps },
     cartList: { cartItems },
   } = state;
+  const lamps = getLampsList();
   const lamp = lamps.find((lamp) => lamp.id === lampId);
   const itemIndex = cartItems.findIndex(({ id }) => id === lampId);
   const item = cartItems[itemIndex];

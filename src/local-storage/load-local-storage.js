@@ -13,4 +13,8 @@ const setItemsCart = (itemsCart) => {
   localStorage.setItem('itemsList', JSON.stringify(itemsCart));
 };
 
-export { setItemsAmount, setItemsPrice, setItemsCart };
+//Set the arr of lamps(objects) in listItems: in the localStorage
+const setLampsList = (lamps) => {
+  localStorage.setItem('lampsList', JSON.stringify(lamps));
+};
+export { setItemsAmount, setItemsPrice, setItemsCart, setLampsList };
