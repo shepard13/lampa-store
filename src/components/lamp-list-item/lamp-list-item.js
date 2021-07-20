@@ -3,17 +3,28 @@ import './lamp-list-item.css';
 const LampListItem = ({ lamp, onAddedToCart }) => {
   const { title, manufacturer, price, lampImg } = lamp;
   return (
-    <div className='lamp-list-item'>
-      <img src={lampImg} width='150' height='150' className='lamp-img' alt='' />
-      <div className='card-body'>
-        <a href='/'>
-          <h5 className='card-title'>{title}</h5>
-        </a>
-        <p className='card-text'>{manufacturer}</p>
-        <p className='card-text'>{price}</p>
-        <button onClick={onAddedToCart} className='btn btn-primary'>
-          Add to cart
-        </button>
+    <div class='col mb-5'>
+      <div class='card h-100'>
+        {/* <!-- Product image--> */}
+        <img class='card-img-top' src={lampImg} alt='...' />
+        {/* <!-- Product details--> */}
+        <div class='card-body p-4'>
+          <div class='text-center'>
+            {/* <!-- Product name--> */}
+            <h5 class='fw-bolder'>
+              {title} - {manufacturer}
+            </h5>
+            {/* <!-- Product price--> */}${price}
+          </div>
+        </div>
+        {/* <!-- Product actions--> */}
+        <div class='card-footer p-4 pt-0 border-top-0 bg-transparent'>
+          <div class='text-center'>
+            <button onClick={onAddedToCart} className='btn btn-secondary'>
+              Add to cart
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

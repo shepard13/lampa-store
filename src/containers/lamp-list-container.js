@@ -23,7 +23,11 @@ class LampListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ lampList: { lamps, loading, error } }) => {
+const mapStateToProps = ({
+  reducers: {
+    lampList: { lamps, loading, error },
+  },
+}) => {
   return { lamps, loading, error };
 };
 

@@ -1,3 +1,10 @@
+export const submitOrderInCart = (userData) => {
+  return {
+    type: 'SUBMIT_ORDER_IN_CART',
+    payload: userData,
+  };
+};
+
 export const lampAddedToCart = (lampId) => {
   return {
     type: 'LAMP_ADDED_TO_CART',

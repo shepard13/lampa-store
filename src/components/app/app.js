@@ -6,7 +6,7 @@ import Header from '../header/header';
 
 const App = () => {
   return (
-    <main role='main' className='container'>
+    <main>
       <Header />
       <Switch>
         <Route exact path='/'>

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { LampListContainer } from '../../containers';
-const HomePage = () => {
-  return (
-    <section>
-      <h1>Home</h1>
-      <LampListContainer />
-    </section>
-  );
-};
+class HomePage extends Component {
+  render() {
+    return (
+      <section>
+        <LampListContainer />
+      </section>
+    );
+  }
+}
 export default HomePage;

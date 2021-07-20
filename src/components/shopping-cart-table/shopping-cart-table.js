@@ -72,7 +72,11 @@ const ShoppingCartTable = ({
   );
 };
 
-const mapStateToProps = ({ cartList: { cartItems, cartTotal } }) => {
+const mapStateToProps = ({
+  reducers: {
+    cartList: { cartItems, cartTotal },
+  },
+}) => {
   return {
     items: cartItems,
     total: cartTotal,

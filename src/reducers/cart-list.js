@@ -1,3 +1,4 @@
+import fireDb from '../firebase-config';
 import {
   setItemsAmount,
   setItemsPrice,
@@ -56,6 +57,14 @@ const updateCartTotalAmount = (itemsInCartArr) => {
   return total;
 };
 
+const submitOrder = (state, userData) => {
+  fireDb.ref('order').push().set({ state, userData });
+  console.log(userData);
+  return {
+    ...state,
+  };
+};
+
 const updateOrder = (state, lampId, quantity) => {
   const {
     cartList: { cartItems },
@@ -99,6 +108,9 @@ const updateCartList = (state, action) => {
       return updateOrder(state, action.payload, -item.count);
     case 'LAMP_DECREASED_AMOUNT_IN_CART':
       return updateOrder(state, action.payload, -1);
+    case 'SUBMIT_ORDER_IN_CART':
+      submitOrder(state, action.payload);
+      return state.cartList;
 
     default:
       return state.cartList;
